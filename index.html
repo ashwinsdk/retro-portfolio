@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="retro" data-reduce-motion="false" data-sound="on">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ashwin Sudhakar — Software & Web3 Developer Portfolio">
+    <meta name="theme-color" content="#000000">
+    <title>ASHWIN - SOFTWARE / WEB3 DEV</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="public/icon-192.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/css/tokens.css">
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+    <!-- ═══════════════════════════════════════════════════════
+       SCANLINE OVERLAY (decorative — low opacity)
+       ═══════════════════════════════════════════════════════ -->
+    <div class="scanline-overlay" aria-hidden="true"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       CUSTOM CURSOR (optional — toggled via HUD)
+       ═══════════════════════════════════════════════════════ -->
+    <div class="custom-cursor" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <line x1="12" y1="0" x2="12" y2="8" stroke="#00FF66" stroke-width="2" />
+            <line x1="12" y1="16" x2="12" y2="24" stroke="#00FF66" stroke-width="2" />
+            <line x1="0" y1="12" x2="8" y2="12" stroke="#00FF66" stroke-width="2" />
+            <line x1="16" y1="12" x2="24" y2="12" stroke="#00FF66" stroke-width="2" />
+            <rect x="10" y="10" width="4" height="4" fill="#00FF66" />
+        </svg>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SCROLL PROGRESS BAR (left side)
+       ═══════════════════════════════════════════════════════ -->
+    <nav class="scroll-progress" aria-label="Page progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+        aria-valuemax="100">
+        <div class="scroll-progress__fill"></div>
+        <button class="scroll-progress__segment" data-section="hero" aria-label="Jump to landing">
+            <span class="scroll-progress__dot"></span>
+        </button>
+        <button class="scroll-progress__segment" data-section="about" aria-label="Jump to about">
+            <span class="scroll-progress__dot"></span>
+        </button>
+        <button class="scroll-progress__segment" data-section="skills" aria-label="Jump to skills">
+            <span class="scroll-progress__dot"></span>
+        </button>
+        <button class="scroll-progress__segment" data-section="projects" aria-label="Jump to projects">
+            <span class="scroll-progress__dot"></span>
+        </button>
+        <button class="scroll-progress__segment" data-section="experience" aria-label="Jump to experience">
+            <span class="scroll-progress__dot"></span>
+        </button>
+        <button class="scroll-progress__segment" data-section="contact" aria-label="Jump to contact">
+            <span class="scroll-progress__dot"></span>
+        </button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+       FLOATING NAV (left-aligned desktop, hamburger mobile)
+       ═══════════════════════════════════════════════════════ -->
+    <header class="nav" role="banner">
+        <div class="nav__brand">
+            <span class="nav__logo" aria-hidden="true">[A]</span>
+            <span class="nav__name">ASHWIN.SDK</span>
+        </div>
+
+        <button class="nav__hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+            <span class="nav__bar"></span>
+            <span class="nav__bar"></span>
+            <span class="nav__bar"></span>
+        </button>
+
+        <nav class="nav__menu" id="nav-menu" role="navigation" aria-label="Main navigation">
+            <a href="#hero" class="nav__link" aria-current="page">START</a>
+            <a href="#about" class="nav__link">ABOUT</a>
+            <a href="#skills" class="nav__link">LOADOUT</a>
+            <a href="#projects" class="nav__link">LEVELS</a>
+            <a href="#experience" class="nav__link">ACHIEVEMENTS</a>
+            <a href="#contact" class="nav__link">DEPLOY</a>
+        </nav>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+       HUD (top-right persistent panel)
+       ═══════════════════════════════════════════════════════ -->
+    <aside class="hud" aria-label="Display and accessibility settings">
+        <button class="hud__toggle" aria-label="Open settings panel" aria-expanded="false" aria-controls="hud-panel">
+            <span class="hud__icon">⚙</span>
+        </button>
+        <div class="hud__panel" id="hud-panel" role="region" aria-label="Settings">
+            <div class="hud__group">
+                <label class="hud__label">MODE</label>
+                <button class="hud__btn" data-action="toggle-mode" aria-pressed="true">RETRO</button>
+            </div>
+            <div class="hud__group">
+                <label class="hud__label">MOTION</label>
+                <button class="hud__btn" data-action="toggle-motion" aria-pressed="false">ON</button>
+            </div>
+            <div class="hud__group">
+                <label class="hud__label">SOUND</label>
+                <button class="hud__btn" data-action="toggle-sound" aria-pressed="true">ON</button>
+            </div>
+            <div class="hud__group">
+                <label class="hud__label">CURSOR</label>
+                <button class="hud__btn" data-action="toggle-cursor" aria-pressed="false">OFF</button>
+            </div>
+            <div class="hud__group">
+                <label class="hud__label">CONTRAST</label>
+                <button class="hud__btn" data-action="toggle-contrast" aria-pressed="false">NORMAL</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════════
+       CARTRIDGE LOADER (startup preloader)
+       ═══════════════════════════════════════════════════════ -->
+    <div class="loader" id="loader" role="status" aria-label="Loading portfolio">
+        <div class="loader__cartridge" aria-hidden="true">
+            <div class="loader__slot">
+                <div class="loader__cart-body">
+                    <div class="loader__cart-label">ASHWIN.SDK</div>
+                </div>
+            </div>
+        </div>
+        <div class="loader__bar">
+            <div class="loader__bar-fill"></div>
+        </div>
+        <div class="loader__text" aria-live="polite">LOADING... <span class="loader__percent">0</span>%</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       MAIN SCROLL CONTAINER
+       ═══════════════════════════════════════════════════════ -->
+    <main class="scroll-container" id="main-content">
+
+        <!-- ─── SECTION 1: HERO / GAME START ────────────────── -->
+        <section class="section section--hero" id="hero" aria-label="Landing">
+            <div class="hero__content">
+                <h1 class="hero__title glitch" data-text="ASHWIN SUDHAKAR">ASHWIN SUDHAKAR</h1>
+                <p class="hero__subtitle">SOFTWARE <span class="hero__accent">/</span> WEB3 DEV</p>
+                <p class="hero__tagline">Building raw, modular systems at the intersection of web and blockchain.</p>
+                <button class="hero__cta cta-btn" aria-label="Start exploring portfolio">
+                    <span class="cta-btn__label">PRESS X TO START</span>
+                    <span class="cta-btn__scanline" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="hero__decoration" aria-hidden="true">
+                <div class="hero__grid"></div>
+            </div>
+        </section>
+
+        <!-- ─── SECTION 2: ABOUT / ROLE SELECT ──────────────── -->
+        <section class="section section--about" id="about" aria-label="About me">
+            <div class="section__header">
+                <span class="section__tag" aria-hidden="true">02</span>
+                <h2 class="section__title">ROLE SELECT</h2>
+            </div>
+            <div class="about__layout">
+                <div class="about__intro">
+                    <p class="about__text">Final-year Computer Science student from REVA University. Recent software
+                        developer intern at FriggHome, focused on web and blockchain applications.</p>
+                    <p class="about__text">I build Angular PWAs, Rust backends, and smart-contract systems. I care about
+                        performance, accessibility, and clean modular architecture.</p>
+                </div>
+                <div class="about__roles" role="list" aria-label="Specialization roles">
+                    <!-- Role Card: Frontend -->
+                    <div class="role-card" role="listitem" tabindex="0" aria-expanded="false">
+                        <div class="role-card__front">
+                            <div class="role-card__icon" aria-hidden="true">⟨/⟩</div>
+                            <h3 class="role-card__title">FRONTEND</h3>
+                            <p class="role-card__sub">Angular · React · PWA</p>
+                            <div class="role-card__xp">
+                                <div class="role-card__xp-bar" data-value="85" role="progressbar" aria-valuenow="85"
+                                    aria-valuemin="0" aria-valuemax="100" aria-label="Frontend proficiency 85%">
+                                    <div class="role-card__xp-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="role-card__back" aria-hidden="true">
+                            <p class="role-card__detail">Built and maintained Angular PWA frontend modules at FriggHome.
+                                Created UrbanDAO civic platform and Kairo bookings app.</p>
+                            <ul class="role-card__projects">
+                                <li>UrbanDAO — Smart City PWA</li>
+                                <li>Kairo — Hyperlocal Platform</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role Card: Blockchain -->
+                    <div class="role-card" role="listitem" tabindex="0" aria-expanded="false">
+                        <div class="role-card__front">
+                            <div class="role-card__icon" aria-hidden="true">⛓</div>
+                            <h3 class="role-card__title">BLOCKCHAIN</h3>
+                            <p class="role-card__sub">Ethereum · Web3 · Solidity</p>
+                            <div class="role-card__xp">
+                                <div class="role-card__xp-bar" data-value="75" role="progressbar" aria-valuenow="75"
+                                    aria-valuemin="0" aria-valuemax="100" aria-label="Blockchain proficiency 75%">
+                                    <div class="role-card__xp-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="role-card__back" aria-hidden="true">
+                            <p class="role-card__detail">Contract testing and deployment scripts on private devnet at
+                                FriggHome. Built Nexvote and UrbanDAO with gasless governance.</p>
+                            <ul class="role-card__projects">
+                                <li>Nexvote — On-chain Voting</li>
+                                <li>UrbanDAO — Gasless Governance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role Card: Backend/DevOps -->
+                    <div class="role-card" role="listitem" tabindex="0" aria-expanded="false">
+                        <div class="role-card__front">
+                            <div class="role-card__icon" aria-hidden="true">▣</div>
+                            <h3 class="role-card__title">BACKEND / DEVOPS</h3>
+                            <p class="role-card__sub">Rust · Node · Docker · Linux</p>
+                            <div class="role-card__xp">
+                                <div class="role-card__xp-bar" data-value="70" role="progressbar" aria-valuenow="70"
+                                    aria-valuemin="0" aria-valuemax="100" aria-label="Backend proficiency 70%">
+                                    <div class="role-card__xp-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="role-card__back" aria-hidden="true">
+                            <p class="role-card__detail">Rust-based backend with PostgreSQL at FriggHome. Deployed
+                                backend services on Linux servers with Docker.</p>
+                            <ul class="role-card__projects">
+                                <li>FriggHome — Rust Backend</li>
+                                <li>RigLedger — Offline Flutter App</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── SECTION 3: SKILLS / LOADOUT ─────────────────── -->
+        <section class="section section--skills" id="skills" aria-label="Skills and technologies">
+            <div class="section__header">
+                <span class="section__tag" aria-hidden="true">03</span>
+                <h2 class="section__title">LOADOUT</h2>
+            </div>
+            <div class="skills__grid" role="list" aria-label="Technical skills">
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Java</h3>
+                    <div class="skill-card__meter" data-value="80" role="progressbar" aria-valuenow="80"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">80</span>
+                    </div>
+                    <span class="skill-card__category">Language</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Python</h3>
+                    <div class="skill-card__meter" data-value="75" role="progressbar" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">75</span>
+                    </div>
+                    <span class="skill-card__category">Language</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">JavaScript</h3>
+                    <div class="skill-card__meter" data-value="85" role="progressbar" aria-valuenow="85"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">85</span>
+                    </div>
+                    <span class="skill-card__category">Language</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Angular</h3>
+                    <div class="skill-card__meter" data-value="85" role="progressbar" aria-valuenow="85"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">85</span>
+                    </div>
+                    <span class="skill-card__category">Framework</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">React</h3>
+                    <div class="skill-card__meter" data-value="70" role="progressbar" aria-valuenow="70"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">70</span>
+                    </div>
+                    <span class="skill-card__category">Framework</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Node.js</h3>
+                    <div class="skill-card__meter" data-value="75" role="progressbar" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">75</span>
+                    </div>
+                    <span class="skill-card__category">Runtime</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Rust</h3>
+                    <div class="skill-card__meter" data-value="65" role="progressbar" aria-valuenow="65"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">65</span>
+                    </div>
+                    <span class="skill-card__category">Language</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">PostgreSQL</h3>
+                    <div class="skill-card__meter" data-value="72" role="progressbar" aria-valuenow="72"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">72</span>
+                    </div>
+                    <span class="skill-card__category">Database</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Docker</h3>
+                    <div class="skill-card__meter" data-value="68" role="progressbar" aria-valuenow="68"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">68</span>
+                    </div>
+                    <span class="skill-card__category">DevOps</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Solidity</h3>
+                    <div class="skill-card__meter" data-value="70" role="progressbar" aria-valuenow="70"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">70</span>
+                    </div>
+                    <span class="skill-card__category">Blockchain</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Git</h3>
+                    <div class="skill-card__meter" data-value="85" role="progressbar" aria-valuenow="85"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">85</span>
+                    </div>
+                    <span class="skill-card__category">DevOps</span>
+                </div>
+
+                <div class="skill-card" role="listitem" tabindex="0">
+                    <h3 class="skill-card__name">Linux</h3>
+                    <div class="skill-card__meter" data-value="72" role="progressbar" aria-valuenow="72"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <svg class="skill-card__ring" viewBox="0 0 100 100" aria-hidden="true">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--dimmed)" stroke-width="6" />
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--neon)" stroke-width="6"
+                                stroke-dasharray="264" stroke-dashoffset="264" class="skill-card__ring-fill" />
+                        </svg>
+                        <span class="skill-card__value">72</span>
+                    </div>
+                    <span class="skill-card__category">DevOps</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ─── SECTION 4: FEATURED PROJECTS / LEVEL SELECT ─── -->
+        <section class="section section--projects" id="projects" aria-label="Featured projects">
+            <div class="section__header">
+                <span class="section__tag" aria-hidden="true">04</span>
+                <h2 class="section__title">LEVEL SELECT</h2>
+            </div>
+            <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Featured projects carousel">
+                <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous project">◀</button>
+                <div class="carousel__track">
+
+                    <!-- Project Card: UrbanDAO -->
+                    <article class="project-card" data-project="urbandao" tabindex="0" aria-label="UrbanDAO project">
+                        <div class="project-card__preview">
+                            <div class="project-card__thumb project-card__thumb--pixelated" aria-hidden="true">
+                                <img src="public/urbandao.webp" alt="UrbanDAO platform screenshot" loading="lazy">
+                            </div>
+                            <span class="project-card__scanline" aria-hidden="true"></span>
+                        </div>
+                        <div class="project-card__info">
+                            <span class="project-card__badge">FRONTEND · BLOCKCHAIN</span>
+                            <h3 class="project-card__title">UrbanDAO</h3>
+                            <p class="project-card__desc">Smart-city platform with role-based governance and gasless
+                                interactions for civic workflows.</p>
+                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="urbandao"
+                                aria-label="View UrbanDAO case study">PLAY / CASE STUDY</button>
+                        </div>
+                    </article>
+
+                    <!-- Project Card: Nexvote -->
+                    <article class="project-card" data-project="nexvote" tabindex="0" aria-label="Nexvote project">
+                        <div class="project-card__preview">
+                            <div class="project-card__thumb project-card__thumb--pixelated" aria-hidden="true">
+                                <img src="public/nexvote.webp" alt="Nexvote voting platform screenshot" loading="lazy">
+                            </div>
+                            <span class="project-card__scanline" aria-hidden="true"></span>
+                        </div>
+                        <div class="project-card__info">
+                            <span class="project-card__badge">WEB3 · GOVERNANCE</span>
+                            <h3 class="project-card__title">Nexvote</h3>
+                            <p class="project-card__desc">Community-driven platform for proposals, discussion, and
+                                transparent on-chain voting.</p>
+                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="nexvote"
+                                aria-label="View Nexvote case study">PLAY / CASE STUDY</button>
+                        </div>
+                    </article>
+
+                    <!-- Project Card: RigLedger -->
+                    <article class="project-card" data-project="rigledger" tabindex="0" aria-label="RigLedger project">
+                        <div class="project-card__preview">
+                            <div class="project-card__thumb project-card__thumb--pixelated" aria-hidden="true">
+                                <img src="public/rig-ledger.webp" alt="RigLedger drilling app screenshot"
+                                    loading="lazy">
+                            </div>
+                            <span class="project-card__scanline" aria-hidden="true"></span>
+                        </div>
+                        <div class="project-card__info">
+                            <span class="project-card__badge">FLUTTER · MOBILE</span>
+                            <h3 class="project-card__title">RigLedger</h3>
+                            <p class="project-card__desc">Fully offline Android app for borewell drilling ledgers,
+                                expenses, invoices, and PDF/CSV export.</p>
+                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="rigledger"
+                                aria-label="View RigLedger case study">PLAY / CASE STUDY</button>
+                        </div>
+                    </article>
+
+                    <!-- Project Card: Kairo -->
+                    <article class="project-card" data-project="kairo" tabindex="0" aria-label="Kairo project">
+                        <div class="project-card__preview">
+                            <div class="project-card__thumb project-card__thumb--pixelated" aria-hidden="true">
+                                <img src="public/kairo.webp" alt="Kairo services platform screenshot" loading="lazy">
+                            </div>
+                            <span class="project-card__scanline" aria-hidden="true"></span>
+                        </div>
+                        <div class="project-card__info">
+                            <span class="project-card__badge">FULLSTACK · PWA</span>
+                            <h3 class="project-card__title">Kairo</h3>
+                            <p class="project-card__desc">Hyperlocal platform for small businesses to list services with
+                                real-time bookings and payments.</p>
+                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="kairo"
+                                aria-label="View Kairo case study">PLAY / CASE STUDY</button>
+                        </div>
+                    </article>
+
+                </div>
+                <button class="carousel__arrow carousel__arrow--next" aria-label="Next project">▶</button>
+            </div>
+        </section>
+
+        <!-- ─── SECTION 5: EXPERIENCE / ACHIEVEMENTS ────────── -->
+        <section class="section section--experience" id="experience" aria-label="Work experience and education">
+            <div class="section__header">
+                <span class="section__tag" aria-hidden="true">05</span>
+                <h2 class="section__title">ACHIEVEMENTS</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline__line" aria-hidden="true"></div>
+
+                <article class="timeline__item" tabindex="0">
+                    <div class="timeline__dot" aria-hidden="true"></div>
+                    <div class="timeline__card">
+                        <span class="timeline__date">JUN 2025 — FEB 2026</span>
+                        <h3 class="timeline__title">Software Developer Intern</h3>
+                        <span class="timeline__org">FriggHome (Quantacore Labs), Bangalore</span>
+                        <ul class="timeline__list">
+                            <li>Built and maintained Angular PWA frontend modules</li>
+                            <li>Worked on Rust-based backend with PostgreSQL</li>
+                            <li>Deployed backend services on Linux servers</li>
+                            <li>Private blockchain devnet: contract testing &amp; deployment scripts</li>
+                        </ul>
+                        <div class="timeline__skills" aria-label="Related skills">
+                            <span class="timeline__skill-tag">Angular</span>
+                            <span class="timeline__skill-tag">Rust</span>
+                            <span class="timeline__skill-tag">PostgreSQL</span>
+                            <span class="timeline__skill-tag">Blockchain</span>
+                            <span class="timeline__skill-tag">Linux</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline__item" tabindex="0">
+                    <div class="timeline__dot" aria-hidden="true"></div>
+                    <div class="timeline__card">
+                        <span class="timeline__date">AUG 2022 — MAY 2026</span>
+                        <h3 class="timeline__title">Bachelor of Engineering</h3>
+                        <span class="timeline__org">Computer Science — REVA University, Bangalore</span>
+                        <ul class="timeline__list">
+                            <li>IEEE program participant — built UrbanDAO</li>
+                            <li>Personal project research in blockchain governance</li>
+                            <li>Developed multiple full-stack and mobile applications</li>
+                        </ul>
+                        <div class="timeline__skills" aria-label="Related skills">
+                            <span class="timeline__skill-tag">Java</span>
+                            <span class="timeline__skill-tag">Python</span>
+                            <span class="timeline__skill-tag">JavaScript</span>
+                            <span class="timeline__skill-tag">Flutter</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ─── SECTION 6: CONTACT / DEPLOY ─────────────────── -->
+        <section class="section section--contact" id="contact" aria-label="Contact">
+            <div class="section__header">
+                <span class="section__tag" aria-hidden="true">06</span>
+                <h2 class="section__title">DEPLOY</h2>
+            </div>
+            <div class="contact__layout">
+                <div class="terminal" role="form" aria-label="Contact form terminal">
+                    <div class="terminal__header">
+                        <span class="terminal__dot terminal__dot--red" aria-hidden="true"></span>
+                        <span class="terminal__dot terminal__dot--yellow" aria-hidden="true"></span>
+                        <span class="terminal__dot terminal__dot--green" aria-hidden="true"></span>
+                        <span class="terminal__title">ashwin@sdk:~$ contact</span>
+                    </div>
+                    <form class="terminal__body" id="contact-form" novalidate>
+                        <div class="terminal__line">
+                            <label for="contact-name" class="terminal__prompt">name&gt;</label>
+                            <input type="text" id="contact-name" name="name" class="terminal__input"
+                                placeholder="Enter your name" required autocomplete="name" aria-required="true">
+                        </div>
+                        <div class="terminal__line">
+                            <label for="contact-email" class="terminal__prompt">email&gt;</label>
+                            <input type="email" id="contact-email" name="email" class="terminal__input"
+                                placeholder="your@email.com" required autocomplete="email" aria-required="true">
+                        </div>
+                        <div class="terminal__line terminal__line--full">
+                            <label for="contact-message" class="terminal__prompt">msg&gt;</label>
+                            <textarea id="contact-message" name="message"
+                                class="terminal__input terminal__input--textarea" placeholder="Type your message..."
+                                required rows="4" aria-required="true"></textarea>
+                        </div>
+                        <div class="terminal__line">
+                            <button type="submit" class="terminal__submit cta-btn">
+                                <span class="cta-btn__label">SEND</span>
+                            </button>
+                        </div>
+                        <div class="terminal__status" aria-live="assertive" role="status"></div>
+                    </form>
+                </div>
+                <div class="contact__links">
+                    <a href="mailto:ashwin2005s@gmail.com" class="contact__tile" aria-label="Send email">
+                        <span class="contact__tile-icon" aria-hidden="true">✉</span>
+                        <span class="contact__tile-label">EMAIL</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ashwinsdk/" target="_blank" rel="noopener noreferrer"
+                        class="contact__tile" aria-label="LinkedIn profile">
+                        <span class="contact__tile-icon" aria-hidden="true">in</span>
+                        <span class="contact__tile-label">LINKEDIN</span>
+                    </a>
+                    <a href="https://github.com/ashwinsdk" target="_blank" rel="noopener noreferrer"
+                        class="contact__tile" aria-label="GitHub profile">
+                        <span class="contact__tile-icon" aria-hidden="true">⌘</span>
+                        <span class="contact__tile-label">GITHUB</span>
+                    </a>
+                    <a href="resume.pdf" download class="contact__tile" aria-label="Download resume">
+                        <span class="contact__tile-icon" aria-hidden="true">↓</span>
+                        <span class="contact__tile-label">RESUME</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── SECTION 7: MINI-GAME (opt-in, lazy-loaded) ──── -->
+        <section class="section section--game" id="playground" aria-label="Mini-game playground">
+            <div class="section__header">
+                <span class="section__tag" aria-hidden="true">07</span>
+                <h2 class="section__title">PLAYGROUND</h2>
+            </div>
+            <div class="game-launcher">
+                <p class="game-launcher__desc">Collect blocks to form a chain. A 30-second arcade game built with
+                    Canvas.</p>
+                <button class="game-launcher__btn cta-btn" id="launch-game" aria-label="Launch mini-game">
+                    <span class="cta-btn__label">INSERT COIN</span>
+                </button>
+                <canvas class="game-launcher__canvas" id="game-canvas" width="480" height="320" tabindex="0"
+                    aria-label="Block chain mini-game" style="display:none;"></canvas>
+                <div class="game-launcher__score" id="game-score" aria-live="polite" style="display:none;">SCORE:
+                    <span>0</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════
+       CASE STUDY MODAL (template — populated by JS)
+       ═══════════════════════════════════════════════════════ -->
+    <div class="modal" id="case-study-modal" role="dialog" aria-modal="true" aria-labelledby="cs-title"
+        aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__container">
+            <button class="modal__close" aria-label="Close case study">✕</button>
+            <div class="modal__content">
+                <!-- 1. Header / Snapshot -->
+                <header class="cs-header">
+                    <h2 class="cs-header__title" id="cs-title"></h2>
+                    <div class="cs-header__meta">
+                        <span class="cs-header__role"></span>
+                        <span class="cs-header__time"></span>
+                    </div>
+                    <div class="cs-header__metrics"></div>
+                </header>
+
+                <!-- 2. Problem -->
+                <section class="cs-section cs-problem" aria-label="Problem statement">
+                    <h3 class="cs-section__title">PROBLEM</h3>
+                    <blockquote class="cs-problem__quote"></blockquote>
+                    <p class="cs-problem__text"></p>
+                </section>
+
+                <!-- 3. Role & Tech -->
+                <section class="cs-section cs-tech" aria-label="Role and technologies">
+                    <h3 class="cs-section__title">ROLE &amp; TECH</h3>
+                    <div class="cs-tech__badges"></div>
+                    <div class="cs-tech__code-toggle">
+                        <button class="cta-btn cta-btn--sm" aria-expanded="false">SHOW CODE</button>
+                        <pre class="cs-tech__code" style="display:none;"><code></code></pre>
+                    </div>
+                </section>
+
+                <!-- 4. Design & Motion -->
+                <section class="cs-section cs-design" aria-label="Design and motion">
+                    <h3 class="cs-section__title">DESIGN &amp; MOTION</h3>
+                    <div class="cs-design__preview"></div>
+                </section>
+
+                <!-- 5. Architecture -->
+                <section class="cs-section cs-arch" aria-label="Architecture">
+                    <h3 class="cs-section__title">ARCHITECTURE</h3>
+                    <div class="cs-arch__diagram"></div>
+                </section>
+
+                <!-- 6. Challenges & Solutions -->
+                <section class="cs-section cs-challenges" aria-label="Key challenges and solutions">
+                    <h3 class="cs-section__title">CHALLENGES &amp; SOLUTIONS</h3>
+                    <div class="cs-challenges__list"></div>
+                </section>
+
+                <!-- 7. Results -->
+                <section class="cs-section cs-results" aria-label="Results">
+                    <h3 class="cs-section__title">RESULTS</h3>
+                    <div class="cs-results__scoreboard"></div>
+                </section>
+
+                <!-- 8. Playground Widget -->
+                <section class="cs-section cs-playground" aria-label="Interactive playground">
+                    <h3 class="cs-section__title">PLAYGROUND</h3>
+                    <div class="cs-playground__widget"></div>
+                </section>
+
+                <!-- 9. Download / Repo -->
+                <section class="cs-section cs-links" aria-label="Project links">
+                    <div class="cs-links__actions"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <a href="mailto:ashwin2005s@gmail.com" class="footer__link">ashwin2005s@gmail.com</a>
+            <span class="footer__sep" aria-hidden="true">|</span>
+            <a href="resume.pdf" download class="footer__link">RESUME</a>
+            <span class="footer__sep" aria-hidden="true">|</span>
+            <span class="footer__copy">© 2026 ASHWIN SUDHAKAR</span>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════
+       BACKGROUND AUDIO
+       ═══════════════════════════════════════════════════════ -->
+    <audio id="bg-music" loop>
+        <source src="src/assets/sounds/bg.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS (deferred)
+       ═══════════════════════════════════════════════════════ -->
+    <script src="src/js/motion.js" defer></script>
+    <script src="src/js/app.js" defer></script>
+    <script src="src/js/carousel.js" defer></script>
+    <script src="src/js/game.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(() => { });
+            });
+        }
+    </script>
+</body>
+
+</html>

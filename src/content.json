@@ -1,0 +1,225 @@
+{
+    "meta": {
+        "locale": "en",
+        "title": "ASHWIN S — SOFTWARE / WEB3 DEV",
+        "description": "Ashwin Sudhakar — Software & Web3 Developer Portfolio",
+        "author": "Ashwin Sudhakar"
+    },
+    "hero": {
+        "title": "ASHWIN SUDHAKAR",
+        "subtitle": "SOFTWARE / WEB3 DEV",
+        "tagline": "Building raw, modular systems at the intersection of web and blockchain.",
+        "cta": "PRESS HERE TO START"
+    },
+    "about": {
+        "paragraphs": [
+            "Final-year Computer Science student from REVA University. Recent software developer intern at FriggHome, focused on web and blockchain applications.",
+            "I build Angular PWAs, Rust backends, and smart-contract systems. I care about performance, accessibility, and clean modular architecture."
+        ],
+        "roles": [
+            {
+                "id": "frontend",
+                "icon": "⟨/⟩",
+                "title": "FRONTEND",
+                "subtitle": "Angular · React · PWA",
+                "proficiency": 85,
+                "detail": "Built and maintained Angular PWA frontend modules at FriggHome. Created UrbanDAO civic platform and Kairo bookings app.",
+                "projects": [
+                    "UrbanDAO — Smart City PWA",
+                    "Kairo — Hyperlocal Platform"
+                ]
+            },
+            {
+                "id": "blockchain",
+                "icon": "⛓",
+                "title": "BLOCKCHAIN",
+                "subtitle": "Ethereum · Web3 · Solidity",
+                "proficiency": 75,
+                "detail": "Contract testing and deployment scripts on private devnet at FriggHome. Built Nexvote and UrbanDAO with gasless governance.",
+                "projects": [
+                    "Nexvote — On-chain Voting",
+                    "UrbanDAO — Gasless Governance"
+                ]
+            },
+            {
+                "id": "backend",
+                "icon": "▣",
+                "title": "BACKEND / DEVOPS",
+                "subtitle": "Rust · Node · Docker · Linux",
+                "proficiency": 70,
+                "detail": "Rust-based backend with PostgreSQL at FriggHome. Deployed backend services on Linux servers with Docker.",
+                "projects": [
+                    "FriggHome — Rust Backend",
+                    "RigLedger — Offline Flutter App"
+                ]
+            }
+        ]
+    },
+    "skills": [
+        {
+            "name": "Java",
+            "value": 80,
+            "category": "Language"
+        },
+        {
+            "name": "Python",
+            "value": 75,
+            "category": "Language"
+        },
+        {
+            "name": "JavaScript",
+            "value": 85,
+            "category": "Language"
+        },
+        {
+            "name": "Angular",
+            "value": 85,
+            "category": "Framework"
+        },
+        {
+            "name": "React",
+            "value": 70,
+            "category": "Framework"
+        },
+        {
+            "name": "Node.js",
+            "value": 75,
+            "category": "Runtime"
+        },
+        {
+            "name": "Rust",
+            "value": 65,
+            "category": "Language"
+        },
+        {
+            "name": "PostgreSQL",
+            "value": 72,
+            "category": "Database"
+        },
+        {
+            "name": "Docker",
+            "value": 68,
+            "category": "DevOps"
+        },
+        {
+            "name": "Solidity",
+            "value": 70,
+            "category": "Blockchain"
+        },
+        {
+            "name": "Git",
+            "value": 85,
+            "category": "DevOps"
+        },
+        {
+            "name": "Linux",
+            "value": 72,
+            "category": "DevOps"
+        }
+    ],
+    "projects": [
+        {
+            "slug": "urbandao",
+            "title": "UrbanDAO",
+            "badge": "FRONTEND · BLOCKCHAIN",
+            "description": "Smart-city platform with role-based governance and gasless interactions for civic workflows.",
+            "thumbnail": null
+        },
+        {
+            "slug": "nexvote",
+            "title": "Nexvote",
+            "badge": "WEB3 · GOVERNANCE",
+            "description": "Community-driven platform for proposals, discussion, and transparent on-chain voting.",
+            "thumbnail": null
+        },
+        {
+            "slug": "rigledger",
+            "title": "RigLedger",
+            "badge": "FLUTTER · MOBILE",
+            "description": "Fully offline Android app for borewell drilling ledgers, expenses, invoices, and PDF/CSV export.",
+            "thumbnail": null
+        },
+        {
+            "slug": "kairo",
+            "title": "Kairo",
+            "badge": "FULLSTACK · PWA",
+            "description": "Hyperlocal platform for small businesses to list services with real-time bookings and payments.",
+            "thumbnail": null
+        }
+    ],
+    "experience": [
+        {
+            "date": "JUN 2025 — FEB 2026",
+            "title": "Software Developer Intern",
+            "org": "FriggHome (Quantacore Labs), Bangalore",
+            "bullets": [
+                "Built and maintained Angular PWA frontend modules",
+                "Worked on Rust-based backend with PostgreSQL",
+                "Deployed backend services on Linux servers",
+                "Private blockchain devnet: contract testing & deployment scripts"
+            ],
+            "skills": [
+                "Angular",
+                "Rust",
+                "PostgreSQL",
+                "Blockchain",
+                "Linux"
+            ]
+        },
+        {
+            "date": "AUG 2022 — MAY 2026",
+            "title": "Bachelor of Engineering",
+            "org": "Computer Science — REVA University, Bangalore",
+            "bullets": [
+                "IEEE program participant — built UrbanDAO",
+                "Personal project research in blockchain governance",
+                "Developed multiple full-stack and mobile applications"
+            ],
+            "skills": [
+                "Java",
+                "Python",
+                "JavaScript",
+                "Flutter"
+            ]
+        }
+    ],
+    "contact": {
+        "prompt_name": "name>",
+        "prompt_email": "email>",
+        "prompt_message": "msg>",
+        "submit": "SEND",
+        "success": "✓ MESSAGE SENT. STANDING BY.",
+        "error": "ERROR: All fields required.",
+        "links": [
+            {
+                "label": "EMAIL",
+                "icon": "✉",
+                "url": "mailto:ashwin2005s@gmail.com",
+                "download": false
+            },
+            {
+                "label": "LINKEDIN",
+                "icon": "in",
+                "url": "https://www.linkedin.com/in/ashwinsdk/",
+                "download": false
+            },
+            {
+                "label": "GITHUB",
+                "icon": "⌘",
+                "url": "https://github.com/ashwinsdk",
+                "download": false
+            },
+            {
+                "label": "RESUME",
+                "icon": "↓",
+                "url": "ashwinsdk.txt",
+                "download": true
+            }
+        ]
+    },
+    "footer": {
+        "email": "ashwin2005s@gmail.com",
+        "resumeLink": "ashwinsdk.txt",
+        "copyright": "© 2026 ASHWIN SUDHAKAR"
+    }
+}

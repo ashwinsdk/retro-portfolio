@@ -1,0 +1,185 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Case Study Schema",
+    "description": "Schema for case study / level walkthrough content",
+    "type": "object",
+    "required": [
+        "slug",
+        "title",
+        "role",
+        "timeframe",
+        "problem",
+        "techBadges",
+        "challenges",
+        "results"
+    ],
+    "properties": {
+        "slug": {
+            "type": "string",
+            "description": "URL-safe identifier"
+        },
+        "title": {
+            "type": "string",
+            "description": "Project name"
+        },
+        "role": {
+            "type": "string",
+            "description": "Role badge text, e.g. FRONTEND · BLOCKCHAIN DEV"
+        },
+        "timeframe": {
+            "type": "string",
+            "description": "Project duration, e.g. 2024 — 2025"
+        },
+        "metrics": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+                "type": "object",
+                "required": [
+                    "label",
+                    "value"
+                ],
+                "properties": {
+                    "label": {
+                        "type": "string",
+                        "maxLength": 30
+                    },
+                    "value": {
+                        "type": "string",
+                        "maxLength": 20
+                    }
+                }
+            }
+        },
+        "problem": {
+            "type": "string",
+            "description": "1–2 paragraphs explaining the problem",
+            "maxLength": 500
+        },
+        "problemQuote": {
+            "type": "string",
+            "description": "Brutalist blockquote text",
+            "maxLength": 200
+        },
+        "techBadges": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Technology labels shown as badges"
+        },
+        "codeSample": {
+            "type": "string",
+            "description": "Short code snippet for the toggleable code block"
+        },
+        "designPreview": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "image",
+                        "video",
+                        "gif",
+                        "iframe"
+                    ]
+                },
+                "src": {
+                    "type": "string"
+                },
+                "alt": {
+                    "type": "string"
+                }
+            }
+        },
+        "architecture": {
+            "type": "object",
+            "description": "SVG architecture diagram",
+            "properties": {
+                "svgSrc": {
+                    "type": "string",
+                    "description": "Path to SVG file"
+                },
+                "svgInline": {
+                    "type": "string",
+                    "description": "Inline SVG markup"
+                },
+                "alt": {
+                    "type": "string"
+                }
+            }
+        },
+        "challenges": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "problem",
+                    "solution"
+                ],
+                "properties": {
+                    "problem": {
+                        "type": "string",
+                        "maxLength": 200
+                    },
+                    "solution": {
+                        "type": "string",
+                        "maxLength": 300
+                    }
+                }
+            }
+        },
+        "results": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "label",
+                    "value"
+                ],
+                "properties": {
+                    "label": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "playground": {
+            "type": "object",
+            "description": "Interactive widget or micro-demo config",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "iframe",
+                        "canvas",
+                        "component"
+                    ]
+                },
+                "src": {
+                    "type": "string"
+                },
+                "fallbackText": {
+                    "type": "string"
+                }
+            }
+        },
+        "links": {
+            "type": "object",
+            "properties": {
+                "repo": {
+                    "type": "string"
+                },
+                "live": {
+                    "type": "string"
+                },
+                "download": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

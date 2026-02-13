@@ -1,0 +1,131 @@
+/* ============================================================
+   ASHWIN SDK — Design Tokens (CSS Custom Properties)
+   Brutalist Retro-Gaming Portfolio
+   Drop this file into the codebase as the single source of truth.
+   ============================================================ */
+
+:root {
+    /* ── Colors ──────────────────────────────────────────────── */
+    --neon: #00FF66;
+    --neon-dark: #00CC52;
+    --neon-glow: rgba(0, 255, 102, 0.15);
+    --neon-glow-strong: rgba(0, 255, 102, 0.5);
+    --ink: #000000;
+    --paper: #FFFFFF;
+    --muted: #0A0A0A;
+    --dimmed: #1A1A1A;
+    --danger: #FF3333;
+    --warning: #FFCC00;
+
+    /* Aliases */
+    --bg: var(--ink);
+    --fg: var(--paper);
+    --accent: var(--neon);
+
+    /* ── Typography ──────────────────────────────────────────── */
+    --font-mono: 'Source Code Pro', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --fs-hero: clamp(2.5rem, 5vw + 1rem, 5rem);
+    --fs-h1: clamp(1.75rem, 3vw + 0.5rem, 3rem);
+    --fs-h2: clamp(1.375rem, 2vw + 0.5rem, 2rem);
+    --fs-h3: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
+    --fs-body: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+    --fs-small: clamp(0.75rem, 0.3vw + 0.7rem, 0.875rem);
+    --fs-micro: clamp(0.625rem, 0.2vw + 0.6rem, 0.75rem);
+
+    --lh-tight: 1.1;
+    --lh-normal: 1.4;
+    --lh-relaxed: 1.6;
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+
+    /* ── Spacing (8px baseline grid) ─────────────────────────── */
+    --baseline: 8px;
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-xxl: 64px;
+    --space-section: 96px;
+
+    /* ── Borders ─────────────────────────────────────────────── */
+    --border-thin: 2px;
+    --border-w: 3px;
+    --border-thick: 4px;
+    --border-heavy: 6px;
+    --radius: 2px;
+
+    /* ── Motion ──────────────────────────────────────────────── */
+    --ease-snappy: cubic-bezier(.22, 1, .36, 1);
+    --ease-smooth: cubic-bezier(.2, .8, .2, 1);
+
+    --dur-instant: 80ms;
+    --dur-micro: 100ms;
+    --dur-fast: 150ms;
+    --dur-normal: 250ms;
+    --dur-reveal: 360ms;
+    --dur-overlay: 450ms;
+    --dur-modal: 600ms;
+
+    --stagger-fast: 60ms;
+    --stagger-normal: 80ms;
+    --stagger-slow: 90ms;
+
+    /* ── Shadows ─────────────────────────────────────────────── */
+    --shadow-neon: 0 0 20px rgba(0, 255, 102, 0.3);
+    --shadow-neon-s: 0 0 40px rgba(0, 255, 102, 0.5);
+    --shadow-card: 0 0 0 3px #00FF66;
+    --shadow-brutalist: 6px 6px 0 #00FF66;
+
+    /* ── Z-Index ─────────────────────────────────────────────── */
+    --z-base: 0;
+    --z-card: 10;
+    --z-nav: 100;
+    --z-hud: 110;
+    --z-modal: 200;
+    --z-tooltip: 300;
+
+    /* ── Scanline texture ────────────────────────────────────── */
+    --scanline-opacity: 0.04;
+    --scanline-bg: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px);
+}
+
+/* ── Reduced-motion override ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --dur-instant: 0ms;
+        --dur-micro: 0ms;
+        --dur-fast: 0ms;
+        --dur-normal: 0ms;
+        --dur-reveal: 0ms;
+        --dur-overlay: 0ms;
+        --dur-modal: 0ms;
+        --stagger-fast: 0ms;
+        --stagger-normal: 0ms;
+        --stagger-slow: 0ms;
+        --scanline-opacity: 0;
+    }
+}
+
+/* ── High-contrast mode ────────────────────────────────────── */
+[data-theme="high-contrast"] {
+    --neon: #66FF99;
+    --muted: #000000;
+    --dimmed: #111111;
+}
+
+/* ── Retro mode (default) vs Modern mode ───────────────────── */
+[data-mode="modern"] {
+    --radius: 6px;
+    --border-w: 2px;
+    --scanline-opacity: 0;
+}

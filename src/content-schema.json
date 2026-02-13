@@ -1,0 +1,244 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ASHWIN SDK — Content Data",
+    "description": "Localisable content template for the portfolio site",
+    "type": "object",
+    "properties": {
+        "meta": {
+            "type": "object",
+            "properties": {
+                "locale": {
+                    "type": "string",
+                    "default": "en"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                }
+            }
+        },
+        "hero": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "subtitle": {
+                    "type": "string"
+                },
+                "tagline": {
+                    "type": "string"
+                },
+                "cta": {
+                    "type": "string"
+                }
+            }
+        },
+        "about": {
+            "type": "object",
+            "properties": {
+                "paragraphs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "subtitle": {
+                                "type": "string"
+                            },
+                            "proficiency": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 100
+                            },
+                            "detail": {
+                                "type": "string"
+                            },
+                            "projects": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "title",
+                            "proficiency"
+                        ]
+                    }
+                }
+            }
+        },
+        "skills": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                    },
+                    "category": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "value"
+                ]
+            }
+        },
+        "projects": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "slug": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "badge": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "thumbnail": {
+                        "type": "string"
+                    },
+                    "cta": {
+                        "type": "string",
+                        "default": "PLAY / CASE STUDY"
+                    }
+                },
+                "required": [
+                    "slug",
+                    "title",
+                    "description"
+                ]
+            }
+        },
+        "experience": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "org": {
+                        "type": "string"
+                    },
+                    "bullets": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "skills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "date",
+                    "title"
+                ]
+            }
+        },
+        "contact": {
+            "type": "object",
+            "properties": {
+                "prompt_name": {
+                    "type": "string",
+                    "default": "name>"
+                },
+                "prompt_email": {
+                    "type": "string",
+                    "default": "email>"
+                },
+                "prompt_message": {
+                    "type": "string",
+                    "default": "msg>"
+                },
+                "submit": {
+                    "type": "string",
+                    "default": "SEND"
+                },
+                "success": {
+                    "type": "string",
+                    "default": "✓ MESSAGE SENT. STANDING BY."
+                },
+                "error": {
+                    "type": "string",
+                    "default": "ERROR: All fields required."
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {
+                                "type": "string"
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "url": {
+                                "type": "string"
+                            },
+                            "download": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "footer": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "resumeLink": {
+                    "type": "string"
+                },
+                "copyright": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
