@@ -407,22 +407,39 @@
             return;
         }
 
-        // Terminal typing animation
+        // Show sending state
         if (terminalStatus && typeof Motion !== 'undefined') {
-            Motion.typeText(terminalStatus, 'SENDING...', {
-                charDelay: 40,
-                onComplete: () => {
-                    setTimeout(() => {
-                        terminalStatus.textContent = '✓ MESSAGE SENT. STANDING BY.';
-                        // In production, hook into actual API here
-                        contactForm.reset();
-                    }, 800);
-                },
-            });
+            Motion.typeText(terminalStatus, 'SENDING...', { charDelay: 40 });
         } else if (terminalStatus) {
-            terminalStatus.textContent = '✓ MESSAGE SENT. STANDING BY.';
-            contactForm.reset();
+            terminalStatus.textContent = 'SENDING...';
         }
+
+        // Send via FormSubmit.co
+        fetch('https://formsubmit.co/ajax/ashwin2005sdk@gmail.com', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                message,
+                _subject: 'Portfolio Contact: ' + name,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (terminalStatus) terminalStatus.textContent = '✓ MESSAGE SENT. STANDING BY.';
+                    contactForm.reset();
+                } else {
+                    if (terminalStatus) terminalStatus.textContent = 'ERROR: Send failed. Try email instead.';
+                }
+            })
+            .catch(() => {
+                if (terminalStatus) terminalStatus.textContent = 'ERROR: Network issue. Try email instead.';
+            });
     });
 
     // ── Case Study Modal ──────────────────────────────────
@@ -456,6 +473,8 @@
                 { label: 'Cost Per Vote', value: '$0' },
             ],
             repo: 'https://github.com/ashwinsdk/urbanDAO',
+            live: 'https://urbandao.ashwinsdk.store/',
+            previews: Array.from({ length: 15 }, (_, i) => 'public/projects/urbandao/preview-0' + (i + 1) + '.webp'),
         },
         nexvote: {
             title: 'Nexvote',
@@ -480,6 +499,8 @@
                 { label: 'Avg Participation', value: '78%' },
             ],
             repo: 'https://github.com/ashwinsdk/nexvote',
+            live: 'https://nexvote.ashwinsdk.store/',
+            previews: Array.from({ length: 9 }, (_, i) => 'public/projects/nexvote/preview-0' + (i + 1) + '.webp'),
         },
         rigledger: {
             title: 'RigLedger',
@@ -504,6 +525,8 @@
                 { label: 'Records Digitized', value: '500+' },
             ],
             repo: 'https://github.com/ashwinsdk/rig-ledger',
+            live: 'https://rig-ledger.ashwinsdk.store/',
+            previews: Array.from({ length: 8 }, (_, i) => 'public/projects/rigledger/preview-0' + (i + 1) + '.webp'),
         },
         kairo: {
             title: 'Kairo',
@@ -528,6 +551,8 @@
                 { label: 'Monthly Cost', value: '$0' },
             ],
             repo: 'https://github.com/ashwinsdk/kairo',
+            live: 'https://kairo.ashwinsdk.store/',
+            previews: Array.from({ length: 24 }, (_, i) => 'public/projects/kairo/preview-0' + (i + 1) + '.webp'),
         },
     };
 
@@ -594,7 +619,26 @@
 
         const links = modal.querySelector('.cs-links__actions');
         if (links) {
-            links.innerHTML = `<a href="${data.repo}" target="_blank" rel="noopener" class="cta-btn cta-btn--sm">VIEW REPO</a>`;
+            let linksHtml = `<a href="${data.repo}" target="_blank" rel="noopener" class="cta-btn cta-btn--sm">VIEW REPO</a>`;
+            if (data.live) {
+                linksHtml += ` <a href="${data.live}" target="_blank" rel="noopener" class="cta-btn cta-btn--sm">LIVE DEMO</a>`;
+            }
+            links.innerHTML = linksHtml;
+        }
+
+        // Populate design previews
+        const designPreview = modal.querySelector('.cs-design__preview');
+        if (designPreview && data.previews) {
+            designPreview.innerHTML = data.previews.map((src, i) =>
+                `<img src="${src}" alt="${data.title} preview ${i + 1}" loading="lazy">`
+            ).join('');
+            // Attach click handlers to design preview images to open lightbox
+            designPreview.querySelectorAll('img').forEach((img, idx) => {
+                img.addEventListener('click', () => {
+                    const imgs = Array.from(designPreview.querySelectorAll('img')).map(i => i.src);
+                    openImageLightbox(imgs, idx);
+                });
+            });
         }
 
         if (typeof Motion !== 'undefined') {
@@ -655,6 +699,86 @@
     });
 
     // ── Scroll Listeners ──────────────────────────────────
+    // ── Image Lightbox (fullscreen preview) ──────────────
+    const lightbox = document.getElementById('image-lightbox');
+    const lbImg = lightbox?.querySelector('.image-lightbox__img');
+    const lbCaption = lightbox?.querySelector('.image-lightbox__caption');
+    const lbClose = lightbox?.querySelector('.image-lightbox__close');
+    const lbPrev = lightbox?.querySelector('.image-lightbox__nav--prev');
+    const lbNext = lightbox?.querySelector('.image-lightbox__nav--next');
+
+    let _lbImages = [];
+    let _lbIndex = 0;
+
+    function showLightboxIndex(i) {
+        if (!_lbImages || !_lbImages.length) return;
+        _lbIndex = (i + _lbImages.length) % _lbImages.length;
+        if (lbImg) {
+            lbImg.src = _lbImages[_lbIndex];
+            lbImg.alt = `Preview ${_lbIndex + 1}`;
+        }
+        if (lbCaption) lbCaption.textContent = `${_lbIndex + 1} / ${_lbImages.length}`;
+    }
+
+    function openImageLightbox(images, startIndex = 0) {
+        _lbImages = images.slice();
+        showLightboxIndex(startIndex);
+        if (lightbox) {
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeImageLightbox() {
+        if (lightbox) {
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Delegate: gallery thumbnails inside project cards
+    document.querySelectorAll('.project-card__gallery').forEach(g => {
+        const imgs = Array.from(g.querySelectorAll('img')).map(i => i.src);
+        g.querySelectorAll('img').forEach((imgEl, idx) => {
+            imgEl.addEventListener('click', () => openImageLightbox(imgs, idx));
+        });
+    });
+
+    // Also open lightbox when the main project thumb is clicked (uses gallery if present)
+    document.querySelectorAll('.project-card').forEach(card => {
+        const thumb = card.querySelector('.project-card__thumb img');
+        const gallery = card.querySelector('.project-card__gallery');
+        if (thumb) {
+            thumb.addEventListener('click', () => {
+                // If gallery exists, use its images; otherwise open the single thumb
+                if (gallery) {
+                    const imgs = Array.from(gallery.querySelectorAll('img')).map(i => i.src);
+                    const idx = imgs.indexOf(thumb.src);
+                    openImageLightbox(imgs, idx >= 0 ? idx : 0);
+                } else {
+                    openImageLightbox([thumb.src], 0);
+                }
+            });
+        }
+    });
+
+    // Lightbox controls
+    lbClose?.addEventListener('click', closeImageLightbox);
+    lightbox?.addEventListener('click', (e) => {
+        if ((e.target).dataset.action === 'close' || e.target === lightbox.querySelector('.image-lightbox__backdrop')) {
+            closeImageLightbox();
+        }
+    });
+    lbPrev?.addEventListener('click', () => showLightboxIndex(_lbIndex - 1));
+    lbNext?.addEventListener('click', () => showLightboxIndex(_lbIndex + 1));
+
+    document.addEventListener('keydown', (e) => {
+        if (lightbox && lightbox.getAttribute('aria-hidden') === 'false') {
+            if (e.key === 'Escape') closeImageLightbox();
+            if (e.key === 'ArrowLeft') showLightboxIndex(_lbIndex - 1);
+            if (e.key === 'ArrowRight') showLightboxIndex(_lbIndex + 1);
+        }
+    });
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {

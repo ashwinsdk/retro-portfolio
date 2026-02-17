@@ -1192,7 +1192,173 @@ body {
     margin-top: auto;
 }
 
+/* Project Card Gallery Strip */
+.project-card__gallery {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 4px;
+    border-bottom: var(--border-w) solid var(--paper);
+    scrollbar-width: none;
+}
+
+.project-card__gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.project-card__gallery img {
+    height: 48px;
+    width: 72px;
+    border: 1px solid var(--dimmed);
+    flex-shrink: 0;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity var(--dur-fast) var(--ease-snappy),
+        border-color var(--dur-fast) var(--ease-snappy);
+}
+
+.project-card__thumb img,
+.project-card__gallery img,
+.cs-design__preview img {
+    cursor: zoom-in;
+}
+
+.image-lightbox__img {
+    opacity: 0;
+    transition: opacity 240ms ease-out, transform 180ms ease-out;
+    transform: scale(0.98);
+}
+
+.image-lightbox[aria-hidden="false"] .image-lightbox__img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.project-card__gallery img:hover {
+    opacity: 1;
+    border-color: var(--neon);
+}
+
+/* Project Card Actions */
+.project-card__actions {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.project-card__live {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Case Study Design Preview Grid */
+.cs-design__preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+}
+
+.cs-design__preview img {
+    width: 100%;
+    height: auto;
+    border: 2px solid var(--dimmed);
+    transition: border-color var(--dur-fast);
+}
+
+.cs-design__preview img:hover {
+    border-color: var(--neon);
+}
+
 /* ── Experience / Timeline Section ───────────────────────── */
+
+/* Image Lightbox */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.image-lightbox[aria-hidden="false"] {
+    display: flex;
+}
+
+.image-lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.image-lightbox__container {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px;
+}
+
+.image-lightbox__img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    border: 4px solid var(--paper);
+    background: #000;
+}
+
+.image-lightbox__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: 2px solid var(--paper);
+    color: var(--paper);
+    padding: 6px 8px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.image-lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 2px solid var(--paper);
+    color: var(--paper);
+    padding: 8px 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.image-lightbox__nav--prev {
+    left: 8px;
+}
+
+.image-lightbox__nav--next {
+    right: 8px;
+}
+
+.image-lightbox__caption {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: var(--fs-small);
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+    z-index: 2;
+}
+
 .timeline {
     position: relative;
     padding-left: var(--space-lg);

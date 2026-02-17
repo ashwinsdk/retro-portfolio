@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ashwin Sudhakar — Software & Web3 Developer Portfolio">
     <meta name="theme-color" content="#000000">
-    <title>ASHWIN - SOFTWARE / WEB3 DEV</title>
+    <title>ashwinsdk</title>
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
@@ -99,7 +99,11 @@
        ═══════════════════════════════════════════════════════ -->
     <aside class="hud" aria-label="Display and accessibility settings">
         <button class="hud__toggle" aria-label="Open settings panel" aria-expanded="false" aria-controls="hud-panel">
-            <span class="hud__icon">⚙</span>
+            <span class="hud__icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                        clip-rule="evenodd" />
+                </svg></span>
         </button>
         <div class="hud__panel" id="hud-panel" role="region" aria-label="Settings">
             <div class="hud__group">
@@ -134,6 +138,20 @@
                 <div class="loader__cart-body">
                     <div class="loader__cart-label">ASHWIN.SDK</div>
                 </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════
+                   IMAGE LIGHTBOX (fullscreen previews)
+                   ═══════════════════════════════════════════════════════ -->
+        <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+            <div class="image-lightbox__backdrop" data-action="close"></div>
+            <div class="image-lightbox__container" role="dialog" aria-modal="true">
+                <button class="image-lightbox__close" aria-label="Close preview">✕</button>
+                <button class="image-lightbox__nav image-lightbox__nav--prev" aria-label="Previous">◀</button>
+                <img class="image-lightbox__img" src="" alt="" />
+                <button class="image-lightbox__nav image-lightbox__nav--next" aria-label="Next">▶</button>
+                <div class="image-lightbox__caption" aria-hidden="false"></div>
             </div>
         </div>
         <div class="loader__bar">
@@ -203,7 +221,12 @@
                     <!-- Role Card: Blockchain -->
                     <div class="role-card" role="listitem" tabindex="0" aria-expanded="false">
                         <div class="role-card__front">
-                            <div class="role-card__icon" aria-hidden="true">⛓</div>
+                            <div class="role-card__icon" aria-hidden="true"><svg width="28" height="28"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                                </svg></div>
                             <h3 class="role-card__title">BLOCKCHAIN</h3>
                             <p class="role-card__sub">Ethereum · Web3 · Solidity</p>
                             <div class="role-card__xp">
@@ -446,13 +469,25 @@
                             </div>
                             <span class="project-card__scanline" aria-hidden="true"></span>
                         </div>
+                        <div class="project-card__gallery">
+                            <img src="public/projects/urbandao/preview-01.webp" alt="UrbanDAO preview 1" loading="lazy">
+                            <img src="public/projects/urbandao/preview-02.webp" alt="UrbanDAO preview 2" loading="lazy">
+                            <img src="public/projects/urbandao/preview-03.webp" alt="UrbanDAO preview 3" loading="lazy">
+                            <img src="public/projects/urbandao/preview-04.webp" alt="UrbanDAO preview 4" loading="lazy">
+                            <img src="public/projects/urbandao/preview-05.webp" alt="UrbanDAO preview 5" loading="lazy">
+                        </div>
                         <div class="project-card__info">
                             <span class="project-card__badge">FRONTEND · BLOCKCHAIN</span>
                             <h3 class="project-card__title">UrbanDAO</h3>
                             <p class="project-card__desc">Smart-city platform with role-based governance and gasless
                                 interactions for civic workflows.</p>
-                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="urbandao"
-                                aria-label="View UrbanDAO case study">PLAY / CASE STUDY</button>
+                            <div class="project-card__actions">
+                                <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="urbandao"
+                                    aria-label="View UrbanDAO case study">CASE STUDY</button>
+                                <a href="https://urbandao.ashwinsdk.store/" target="_blank" rel="noopener noreferrer"
+                                    class="project-card__live cta-btn cta-btn--sm" aria-label="UrbanDAO live demo">LIVE
+                                    ↗</a>
+                            </div>
                         </div>
                     </article>
 
@@ -464,13 +499,25 @@
                             </div>
                             <span class="project-card__scanline" aria-hidden="true"></span>
                         </div>
+                        <div class="project-card__gallery">
+                            <img src="public/projects/nexvote/preview-01.webp" alt="Nexvote preview 1" loading="lazy">
+                            <img src="public/projects/nexvote/preview-02.webp" alt="Nexvote preview 2" loading="lazy">
+                            <img src="public/projects/nexvote/preview-03.webp" alt="Nexvote preview 3" loading="lazy">
+                            <img src="public/projects/nexvote/preview-04.webp" alt="Nexvote preview 4" loading="lazy">
+                            <img src="public/projects/nexvote/preview-05.webp" alt="Nexvote preview 5" loading="lazy">
+                        </div>
                         <div class="project-card__info">
                             <span class="project-card__badge">WEB3 · GOVERNANCE</span>
                             <h3 class="project-card__title">Nexvote</h3>
                             <p class="project-card__desc">Community-driven platform for proposals, discussion, and
                                 transparent on-chain voting.</p>
-                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="nexvote"
-                                aria-label="View Nexvote case study">PLAY / CASE STUDY</button>
+                            <div class="project-card__actions">
+                                <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="nexvote"
+                                    aria-label="View Nexvote case study">CASE STUDY</button>
+                                <a href="https://nexvote.ashwinsdk.store/" target="_blank" rel="noopener noreferrer"
+                                    class="project-card__live cta-btn cta-btn--sm" aria-label="Nexvote live demo">LIVE
+                                    ↗</a>
+                            </div>
                         </div>
                     </article>
 
@@ -483,13 +530,30 @@
                             </div>
                             <span class="project-card__scanline" aria-hidden="true"></span>
                         </div>
+                        <div class="project-card__gallery">
+                            <img src="public/projects/rigledger/preview-01.webp" alt="RigLedger preview 1"
+                                loading="lazy">
+                            <img src="public/projects/rigledger/preview-02.webp" alt="RigLedger preview 2"
+                                loading="lazy">
+                            <img src="public/projects/rigledger/preview-03.webp" alt="RigLedger preview 3"
+                                loading="lazy">
+                            <img src="public/projects/rigledger/preview-04.webp" alt="RigLedger preview 4"
+                                loading="lazy">
+                            <img src="public/projects/rigledger/preview-05.webp" alt="RigLedger preview 5"
+                                loading="lazy">
+                        </div>
                         <div class="project-card__info">
                             <span class="project-card__badge">FLUTTER · MOBILE</span>
                             <h3 class="project-card__title">RigLedger</h3>
                             <p class="project-card__desc">Fully offline Android app for borewell drilling ledgers,
                                 expenses, invoices, and PDF/CSV export.</p>
-                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="rigledger"
-                                aria-label="View RigLedger case study">PLAY / CASE STUDY</button>
+                            <div class="project-card__actions">
+                                <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="rigledger"
+                                    aria-label="View RigLedger case study">CASE STUDY</button>
+                                <a href="https://rig-ledger.ashwinsdk.store/" target="_blank" rel="noopener noreferrer"
+                                    class="project-card__live cta-btn cta-btn--sm" aria-label="RigLedger live demo">LIVE
+                                    ↗</a>
+                            </div>
                         </div>
                     </article>
 
@@ -501,13 +565,25 @@
                             </div>
                             <span class="project-card__scanline" aria-hidden="true"></span>
                         </div>
+                        <div class="project-card__gallery">
+                            <img src="public/projects/kairo/preview-01.webp" alt="Kairo preview 1" loading="lazy">
+                            <img src="public/projects/kairo/preview-02.webp" alt="Kairo preview 2" loading="lazy">
+                            <img src="public/projects/kairo/preview-03.webp" alt="Kairo preview 3" loading="lazy">
+                            <img src="public/projects/kairo/preview-04.webp" alt="Kairo preview 4" loading="lazy">
+                            <img src="public/projects/kairo/preview-05.webp" alt="Kairo preview 5" loading="lazy">
+                        </div>
                         <div class="project-card__info">
                             <span class="project-card__badge">FULLSTACK · PWA</span>
                             <h3 class="project-card__title">Kairo</h3>
                             <p class="project-card__desc">Hyperlocal platform for small businesses to list services with
                                 real-time bookings and payments.</p>
-                            <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="kairo"
-                                aria-label="View Kairo case study">PLAY / CASE STUDY</button>
+                            <div class="project-card__actions">
+                                <button class="project-card__cta cta-btn cta-btn--sm" data-casestudy="kairo"
+                                    aria-label="View Kairo case study">CASE STUDY</button>
+                                <a href="https://kairo.ashwinsdk.store/" target="_blank" rel="noopener noreferrer"
+                                    class="project-card__live cta-btn cta-btn--sm" aria-label="Kairo live demo">LIVE
+                                    ↗</a>
+                            </div>
                         </div>
                     </article>
 
@@ -623,6 +699,11 @@
                         class="contact__tile" aria-label="GitHub profile">
                         <span class="contact__tile-icon" aria-hidden="true">⌘</span>
                         <span class="contact__tile-label">GITHUB</span>
+                    </a>
+                    <a href="https://ashwinsdk.store/" target="_blank" rel="noopener noreferrer" class="contact__tile"
+                        aria-label="Freelancing website">
+                        <span class="contact__tile-icon" aria-hidden="true">↗</span>
+                        <span class="contact__tile-label">FREELANCE</span>
                     </a>
                     <a href="resume.pdf" download class="contact__tile" aria-label="Download resume">
                         <span class="contact__tile-icon" aria-hidden="true">↓</span>
