@@ -4,7 +4,7 @@
  * Provides offline fallback for key pages.
  */
 
-const CACHE_NAME = 'ashwinsdk-v1';
+const CACHE_NAME = 'ashwinsdk-v2-20260217';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
